@@ -174,6 +174,7 @@ def get_target_filename(is_target_process_64=None, prefix=None, extension=None):
         if not extension:
             extension = '.so'
         suffix_64 = 'amd64'
+        suffix_aarch64 = 'aarch64'
         suffix_32 = 'x86'
 
     elif IS_MAC:
@@ -222,7 +223,7 @@ def get_target_filename(is_target_process_64=None, prefix=None, extension=None):
             filename = os.path.join(libdir, found[0])
 
         else:  # Heuristic: there's one additional library which doesn't seem to be our own. Find the odd one.
-            filtered = [name for name in found if not name.endswith((suffix_64 + extension, suffix_32 + extension))]
+            filtered = [name for name in found if not name.endswith((suffix_64 + extension, suffix_32 + extension, suffix_aarch64 + extension))]
             if len(filtered) == 1:  # If more than one is available we can't be sure...
                 filename = os.path.join(libdir, found[0])
 

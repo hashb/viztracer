@@ -45,6 +45,10 @@ elif sys.platform in ("linux", "linux2"):
         package_data["viztracer"].extend([
             "attach_process/attach_linux_amd64.so"
         ])
+    elif platform.machine() == "aarch64":
+        package_data["viztracer"].extend([
+            "attach_process/attach_linux_aarch64.so"
+        ])
 
 setuptools.setup(
     name="viztracer",
